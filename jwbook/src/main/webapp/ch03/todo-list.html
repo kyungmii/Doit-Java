@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class = "container">
+		<div class="row mt-5">
+			<h3 class = "text-center">할일 목록들</h3>
+			<hr />
+			<div class = "container text-left">
+				<a href = "<%=request.getContextPath()%>/todos?action=new" class = "btn btn-success"
+			</div>
+			<br />
+			<table class = "table table-bordered mt-3">
+				<thead>
+					<tr>
+						<th>제목</th>
+						<th>마감 일자</th>
+						<th>현재 상태</th>
+						<th>액션</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--동적 데이터(할일 데이터)를 테이블로 입력-->
+					<!--한 개의 할일을 변수 todo 로 저장 -->
+					<c:forEach var = "todo" item="${listtodo}">
+						<tr>
+							<td><c:out value="${todo.title}" /></td>
+							<td><c:out value="${todo.targetDate}" /></td>
+							<td><c:out value="${todo.status}" /></td>
+							<td><!--액션 데이터가 들어갈 자리 --></td>
+						    <td>
+						      <a href="<%=request.getContextPath()%>/todos?action=edit&id=<c:out value='${todo.id}'/>" class="btn btn-outline-info btn-sm">수정</a>
+						      <a href="<%=request.getContextPath()%>/todos?action=delete&id=<c:out value='${todo.id}'/>" class="btn btn-outline-danger btn-sm">삭제</a>
+      						</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>
